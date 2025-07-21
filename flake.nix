@@ -46,6 +46,11 @@
 
                   # For pymarkdown
                   gcc
+
+                  # For nixfmt
+                  gmp
+                  ghc
+                  cabal-install
                 ];
 
                 languages.ruby.enable = true;
