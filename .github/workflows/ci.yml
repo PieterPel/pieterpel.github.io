@@ -17,5 +17,10 @@ jobs:
               with:
                   extra_nix_config: |
                       access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            - name: Install direnv with Nix
+              uses: aldoborrero/direnv-nix-action@v2
+              with:
+                  use_nix_profile: true
+                  nix_channel: nixpkgs
             - name: Run pre-commit hooks
-              run: nix develop --command pre-commit run --all-files
+              run: direnv allow && direnv exec . pre-commit run --all-files
