@@ -17,5 +17,9 @@ jobs:
               with:
                   extra_nix_config: |
                       access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            - name: Add nixpkgs-unstable channel
+              run: |
+                  nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+                  nix-channel --update
             - name: Run pre-commit hooks
               run: pre-commit run --all-files
