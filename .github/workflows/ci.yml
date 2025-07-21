@@ -1,0 +1,21 @@
+---
+name: CI
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+
+jobs:
+    pre-commit:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Install Nix
+              uses: cachix/install-nix-action@v17
+              with:
+                  extra_nix_config: |
+                      access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            - name: Run pre-commit hooks
+              run: nix develop --command pre-commit run --all-files

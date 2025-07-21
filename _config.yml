@@ -26,8 +26,7 @@ github_username: PieterPel
 
 # Build settings
 markdown: kramdown
-theme: minimal-mistakes-jekyll
-minimal_mistakes_skin: neon
+theme: jekyll-theme-midnight
 plugins:
     - jekyll-feed
 

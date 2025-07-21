@@ -40,6 +40,7 @@
               {
                 # https://devenv.sh/reference/options/
                 packages = with pkgs; [
+                  pre-commit
                   rubyPackages_3_1.jekyll
 
                   # For pymarkdown
