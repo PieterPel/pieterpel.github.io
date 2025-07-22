@@ -39,19 +39,22 @@
             modules = [
               {
                 # https://devenv.sh/reference/options/
-                packages = with pkgs; [
-                  act
-                  pre-commit
-                  rubyPackages_3_1.jekyll
+                packages =
+                  with pkgs;
+                  [
+                    pre-commit
+                    rubyPackages_3_1.jekyll
+                    node2nix
 
-                  # For pymarkdown
-                  gcc
+                    # For pymarkdown
+                    gcc
 
-                  # For nixfmt
-                  gmp
-                  ghc
-                  cabal-install
-                ];
+                    # For nixfmt
+                    gmp
+                    ghc
+                    cabal-install
+                  ]
+                  ++ (import ./node/default.nix { inherit pkgs; });
 
                 languages.ruby.enable = true;
 

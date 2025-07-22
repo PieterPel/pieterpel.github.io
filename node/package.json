@@ -1,0 +1,19 @@
+{
+  "name": "cross-post-blog",
+  "version": "1.0.0",
+  "description": "A package for cross-posting blog content.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "blog",
+    "cross-post",
+    "jekyll"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cross-post-blog": "^1.5.4"
+  }
+}

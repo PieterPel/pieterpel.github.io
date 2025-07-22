@@ -1,0 +1,3 @@
+[submodule "node/cross-post"]
+	path = node/cross-post
+	url = https://github.com/PieterPel/cross-post
