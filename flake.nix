@@ -32,6 +32,7 @@
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
+          lib = nixpkgs.lib;
         in
         {
           default = devenv.lib.mkShell {
@@ -39,30 +40,39 @@
             modules = [
               {
                 # https://devenv.sh/reference/options/
-                packages =
-                  with pkgs;
-                  [
-                    pre-commit
-                    rubyPackages_3_1.jekyll
-                    node2nix
+                packages = with pkgs; [
+                  pre-commit
+                  rubyPackages_3_1.jekyll
 
-                    # For pymarkdown
-                    gcc
+                  # For cross-post-blog
+                  node2nix
 
-                    # For nixfmt
-                    gmp
-                    ghc
-                    cabal-install
-                  ]
-                  ++ (import ./node/default.nix { inherit pkgs; });
+                  # For pymarkdown
+                  gcc
+
+                  # For nixfmt
+                  gmp
+                  ghc
+                  cabal-install
+
+                  # For node-canvas
+                  cairo
+                  pango
+                  libuuid
+                  buildPackages.stdenv.cc.libc
+
+                ];
 
                 languages.ruby.enable = true;
-
-                enterShell = '''';
+                languages.javascript.enable = true;
 
                 processes = {
                   jekyll-serve.exec = "bundle exec jekyll serve";
                 };
+
+                enterShell = ''
+                  bash -c "cd ./node && npm install ."
+                '';
               }
             ];
           };
